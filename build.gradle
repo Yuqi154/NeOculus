@@ -35,7 +35,7 @@ plugins {
 //	}
 //}
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 //sourceCompatibility = JavaVersion.VERSION_17
 //targetCompatibility = JavaVersion.VERSION_17
 
@@ -167,7 +167,8 @@ dependencies {
 	runtimeOnly(implementation(shadow(project(path: ":glsl-relocated", configuration: "bundledJar")))) {
 		transitive = false
 	}
-	runtimeOnly(implementation(jarJar("org.anarres:jcpp:1.4.14")))
+	implementation jarJar("io.github.douira:glsl-transformer:2.0.2")
+	implementation jarJar("org.anarres:jcpp:1.4.14")
 }
 
 //processResources {

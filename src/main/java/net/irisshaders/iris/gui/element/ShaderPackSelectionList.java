@@ -36,7 +36,7 @@ public class ShaderPackSelectionList extends IrisObjectSelectionList<ShaderPackS
 	private ShaderPackEntry applied = null;
 
 	public ShaderPackSelectionList(ShaderPackScreen screen, Minecraft client, int width, int height, int top, int bottom, int left, int right) {
-		super(client, width, height, top, bottom, left, right, 20);
+		super(client, width, bottom, top+ 4, bottom, left, right, 20);
 		WatchKey key1;
 		WatchService watcher1;
 

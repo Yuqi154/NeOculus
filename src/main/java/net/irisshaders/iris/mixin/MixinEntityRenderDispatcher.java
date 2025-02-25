@@ -90,7 +90,7 @@ public class MixinEntityRenderDispatcher {
 	}
 
 	@Inject(method = "renderFlame", at = @At("HEAD"))
-	private void iris$setFlameId(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, CallbackInfo ci) {
+	private void iris$setFlameId(PoseStack poseStack, MultiBufferSource buffer, Entity entity, Quaternionf quaternion, CallbackInfo ci) {
 		Object2IntFunction<NamespacedId> entityIds = WorldRenderingSettings.INSTANCE.getEntityIds();
 
 		if (entityIds == null) {
@@ -102,7 +102,7 @@ public class MixinEntityRenderDispatcher {
 	}
 
 	@Inject(method = "renderFlame", at = @At("RETURN"))
-	private void restoreFlameId(PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, CallbackInfo ci) {
+	private void restoreFlameId(PoseStack poseStack, MultiBufferSource buffer, Entity entity, Quaternionf quaternion, CallbackInfo ci) {
 		CapturedRenderingState.INSTANCE.setCurrentEntity(cachedId);
 		cachedId = 0;
 	}

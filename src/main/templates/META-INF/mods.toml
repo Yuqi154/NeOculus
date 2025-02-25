@@ -60,13 +60,13 @@ file="META-INF/accesstransformer.cfg"
 [[dependencies.oculus]]
     modId="minecraft"
     type="required"
-    versionRange="[1.21.1]"
+    versionRange="[1.20.4]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.oculus]]
     modId = "embeddium"
     type="optional"
-    versionRange = "[1.0.0,)"
+    versionRange = "[0.3.0,)"
     ordering = "NONE"
     side = "CLIENT"
