@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Set;
 
 @Mixin(ModelPart.Cube.class)
-public class CuboidMixin implements ModelCuboidAccessor {
+public abstract class CuboidMixin implements ModelCuboidAccessor {
 	@Unique
 	private ModelCuboid sodium$cuboid;
 

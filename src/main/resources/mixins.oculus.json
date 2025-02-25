@@ -61,7 +61,6 @@
     "entity_render_context.MixinHumanoidArmorLayer",
     "entity_render_context.MixinItemRenderer",
     "fabulous.MixinDisableFabulousGraphics",
-    "gui.MixinForgeGui",
     "gui.MixinGui",
     "gui.MixinVideoSettingsScreen",
     "rendertype.RenderStateShardAccessor",

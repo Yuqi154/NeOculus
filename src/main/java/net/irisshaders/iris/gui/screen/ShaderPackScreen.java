@@ -23,7 +23,7 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.FormattedCharSequence;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.neoforged.fml.loading.FMLEnvironment;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
@@ -92,7 +92,7 @@ public class ShaderPackScreen extends Screen implements HudHideable {
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
 		if (this.minecraft.level == null) {
-			this.renderBackground(guiGraphics);
+			this.renderBackground(guiGraphics,mouseX,mouseY,delta);
 		} else if (!this.guiHidden) {
 			guiGraphics.fillGradient(0, 0, width, height, 0x4F232323, 0x4F232323);
 		}

@@ -138,7 +138,8 @@ public class ShadowRenderer {
 
 		this.sunPathRotation = directives.getSunPathRotation();
 
-		this.buffers = new RenderBuffers();
+		int processors = Runtime.getRuntime().availableProcessors();
+		this.buffers = new RenderBuffers(processors);
 
 		if (this.buffers instanceof RenderBuffersExt) {
 			this.renderBuffersExt = (RenderBuffersExt) buffers;
@@ -544,7 +545,7 @@ public class ShadowRenderer {
 
 		IrisRenderSystem.restorePlayerProjection();
 
-		debugStringTerrain = ((LevelRenderer) levelRenderer).getChunkStatistics();
+		debugStringTerrain = ((LevelRenderer) levelRenderer).getSectionStatistics();
 
 		levelRenderer.getLevel().getProfiler().popPush("generate mipmaps");
 

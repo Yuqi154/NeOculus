@@ -1,11 +1,11 @@
 package net.irisshaders.iris.compat.sodium.mixin.options;
 
 import com.google.common.collect.ImmutableList;
-import me.jellysquid.mods.sodium.client.gui.SodiumOptionsGUI;
 import me.jellysquid.mods.sodium.client.gui.options.OptionPage;
 import net.irisshaders.iris.gui.screen.ShaderPackScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import org.embeddedt.embeddium.gui.EmbeddiumVideoOptionsScreen;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Adds our Shader Packs button to the Sodium options GUI.
  */
-@Mixin(SodiumOptionsGUI.class)
+@Mixin(EmbeddiumVideoOptionsScreen.class)
 public class MixinSodiumOptionsGUI extends Screen {
 	@Shadow(remap = false)
 	@Final
@@ -33,18 +33,18 @@ public class MixinSodiumOptionsGUI extends Screen {
 		super(title);
 	}
 
-	@Inject(method = "<init>", at = @At("RETURN"))
-	private void iris$onInit(Screen prevScreen, CallbackInfo ci) {
-		Component shaderPacksTranslated = Component.translatable("options.iris.shaderPackSelection");
-		shaderPacks = new OptionPage(shaderPacksTranslated, ImmutableList.of());
-		pages.add(shaderPacks);
-	}
-
-	@Inject(method = "setPage", at = @At("HEAD"), remap = false, cancellable = true)
-	private void iris$onSetPage(OptionPage page, CallbackInfo ci) {
-		if (page == shaderPacks) {
-			minecraft.setScreen(new ShaderPackScreen(this));
-			ci.cancel();
-		}
-	}
+//	@Inject(method = "<init>", at = @At("RETURN"))
+//	private void iris$onInit(Screen prev, List pages, CallbackInfo ci) {
+//		Component shaderPacksTranslated = Component.translatable("options.iris.shaderPackSelection");
+//		shaderPacks = new OptionPage(shaderPacksTranslated, ImmutableList.of());
+//		pages.add(shaderPacks);
+//	}
+//
+//	@Inject(method = "setPage", at = @At("HEAD"), remap = false, cancellable = true)
+//	private void iris$onSetPage(OptionPage page, CallbackInfo ci) {
+//		if (page == shaderPacks) {
+//			minecraft.setScreen(new ShaderPackScreen(this));
+//			ci.cancel();
+//		}
+//	}
 }

@@ -15,8 +15,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.client.ChunkRenderTypeSet;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,13 +35,13 @@ public class BlockMaterialMapping {
 		return blockStateIds;
 	}
 
-	public static Map<Holder.Reference<Block>, ChunkRenderTypeSet> createBlockTypeMap(Map<NamespacedId, BlockRenderType> blockPropertiesMap) {
-		Map<Holder.Reference<Block>, ChunkRenderTypeSet> blockTypeIds = new Object2ObjectOpenHashMap<>();
+	public static Map<Block, ChunkRenderTypeSet> createBlockTypeMap(Map<NamespacedId, BlockRenderType> blockPropertiesMap) {
+		Map<Block, ChunkRenderTypeSet> blockTypeIds = new Object2ObjectOpenHashMap<>();
 
 		blockPropertiesMap.forEach((id, blockType) -> {
 			ResourceLocation resourceLocation = new ResourceLocation(id.getNamespace(), id.getName());
 
-			ForgeRegistries.BLOCKS.getDelegate(resourceLocation).ifPresent(
+			BuiltInRegistries.BLOCK.getOptional(resourceLocation).ifPresent(
 					block -> blockTypeIds.put(block, ChunkRenderTypeSet.of(convertBlockToRenderType(blockType)))
 			);
 		});
@@ -72,14 +71,14 @@ public class BlockMaterialMapping {
 			throw new IllegalStateException("Failed to get entry for " + intId, exception);
 		}
 
-		Optional<Holder.Reference<Block>> delegateOpt = ForgeRegistries.BLOCKS.getDelegate(resourceLocation);
+		Optional<Block> delegateOpt = BuiltInRegistries.BLOCK.getOptional(resourceLocation);
 
 		// If the block doesn't exist, by default the registry will return AIR. That probably isn't what we want.
-		if (delegateOpt.isEmpty() || !delegateOpt.get().isBound()) {
+		if (delegateOpt.isEmpty()) {
 			return;
 		}
 
-		Block block = delegateOpt.get().get();
+		Block block = delegateOpt.get();
 
 		Map<String, String> propertyPredicates = entry.propertyPredicates();
 

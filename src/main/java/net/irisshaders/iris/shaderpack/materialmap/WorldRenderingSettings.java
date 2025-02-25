@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.ChunkRenderTypeSet;
+import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -16,7 +16,7 @@ public class WorldRenderingSettings {
 
 	private boolean reloadRequired;
 	private Object2IntMap<BlockState> blockStateIds;
-	private Map<Holder.Reference<Block>, ChunkRenderTypeSet> blockTypeIds;
+	private Map<Block, ChunkRenderTypeSet> blockTypeIds;
 	private Object2IntFunction<NamespacedId> entityIds;
 	private Object2IntFunction<NamespacedId> itemIds;
 	private float ambientOcclusionLevel;
@@ -63,11 +63,11 @@ public class WorldRenderingSettings {
 	}
 
 	@Nullable
-	public Map<Holder.Reference<Block>, ChunkRenderTypeSet> getBlockTypeIds() {
+	public Map<Block, ChunkRenderTypeSet> getBlockTypeIds() {
 		return blockTypeIds;
 	}
 
-	public void setBlockTypeIds(Map<Holder.Reference<Block>, ChunkRenderTypeSet> blockTypeIds) {
+	public void setBlockTypeIds(Map<Block, ChunkRenderTypeSet> blockTypeIds) {
 		if (this.blockTypeIds != null && this.blockTypeIds.equals(blockTypeIds)) {
 			return;
 		}
